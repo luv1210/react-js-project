@@ -1,0 +1,13 @@
+h1{
+  text-align: center;
+  margin-top: 20px;
+}
+.user-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr); 
+  gap: 50px;
+  min-height: 100vh;
+  justify-items: center; 
+  margin-left: 80px;
+
+}
