@@ -1,100 +1,160 @@
+/* Overall layout */
+.review-page {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #eef2f3, #d9e4f5);
+  min-height: 100vh;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Form container */
 .review-container {
-  max-width: 500px;
-  margin: 50px auto;
-  padding: 25px;
-  background: #ffffff;
-  border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: white;
+  width: 420px;
+  border-radius: 18px;
+  padding: 30px 25px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
 }
 
-.review-title {
+.review-container:hover {
+  transform: scale(1.01);
+}
+
+.form-title {
   text-align: center;
-  margin-bottom: 20px;
-  font-size: 24px;
-  font-weight: 600;
   color: #333;
+  font-weight: 600;
+  margin-bottom: 20px;
 }
 
-.field {
-  margin-bottom: 18px;
+/* Inputs */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
 }
 
-.field label {
-  display: block;
-  margin-bottom: 6px;
-  font-size: 14px;
+.form-group label {
   font-weight: 500;
+  margin-bottom: 6px;
   color: #555;
 }
 
-.field input,
-.field textarea {
-  width: 100%;
+.form-group input,
+.form-group textarea {
   padding: 10px 12px;
-  border: 1px solid #ddd;
+  border: 1.5px solid #ccc;
   border-radius: 8px;
   font-size: 14px;
+  transition: border 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
   outline: none;
-  transition: border 0.3s ease, box-shadow 0.3s ease;
+  border-color: #6a82fb;
 }
 
-.field input:focus,
-.field textarea:focus {
-  border-color: #3f51b5;
-  box-shadow: 0 0 6px rgba(63, 81, 181, 0.3);
+/* Error text */
+.error {
+  color: red;
+  font-size: 13px;
+  margin-top: 3px;
 }
 
-.field textarea {
-  min-height: 90px;
-  resize: vertical;
+/* Rating stars */
+.rating-group {
+  margin-bottom: 15px;
 }
 
 .rating-stars {
   display: flex;
-  align-items: center;
-  gap: 8px;
+  gap: 5px;
 }
 
-.rating-stars span {
-  transition: transform 0.2s ease, color 0.2s ease;
+.star {
+  font-size: 28px;
+  cursor: pointer;
+  color: #ccc;
+  transition: color 0.3s ease;
 }
 
-.rating-stars span:hover {
-  transform: scale(1.2);
-  color: #ff5722 !important;
+.star.active,
+.star:hover {
+  color: #f7c000;
 }
 
+/* Submit button */
 .submit-btn {
   width: 100%;
-  padding: 12px;
-  background: linear-gradient(135deg, #3f51b5, #5c6bc0);
-  border: none;
-  border-radius: 10px;
+  background: linear-gradient(90deg, #6a82fb, #fc5c7d);
   color: white;
-  font-size: 16px;
+  border: none;
+  padding: 12px 0;
   font-weight: 600;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
+  transition: opacity 0.3s ease;
 }
 
 .submit-btn:hover {
-  background: linear-gradient(135deg, #3949ab, #283593);
-  transform: translateY(-2px);
+  opacity: 0.9;
 }
 
-.thankyou-box {
+/* Review list */
+.review-list {
+  margin-top: 50px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.review-list h3 {
   text-align: center;
-  padding: 20px;
+  margin-bottom: 20px;
+  color: #333;
 }
 
-.thankyou-box h3 {
-  font-size: 22px;
-  color: #4caf50;
-  margin-bottom: 8px;
+.no-reviews {
+  text-align: center;
+  color: #777;
 }
 
-.thankyou-box p {
-  font-size: 15px;
-  color: #666;
+.review-card {
+  background: white;
+  border-radius: 12px;
+  padding: 15px 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  margin-bottom: 20px;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.review-header h4 {
+  margin: 0;
+  color: #333;
+}
+
+.review-header p {
+  margin: 3px 0 0;
+  font-size: 13px;
+  color: #777;
+}
+
+.stars-display {
+  display: flex;
+  gap: 4px;
+}
+
+.review-text {
+  margin-top: 10px;
+  color: #555;
+  font-style: italic;
+  line-height: 1.4;
 }

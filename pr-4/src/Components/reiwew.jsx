@@ -2,101 +2,146 @@ import React, { useState } from "react";
 import "./Review.css";
 
 const ReviewForm = () => {
-  const [formData, setFormData] = useState({
-    name: "",
+  const emailregex = /^[^@]+@[^@]+\.[^@]+$/;
+  const initial = {
+    uname: "",
     email: "",
-    message: "",
-    stars: 0,
-  });
-
-  const [submitted, setSubmitted] = useState(false);
-
-  const updateField = (field, value) => {
-    setFormData({ ...formData, [field]: value });
+    review: "",
+    rating: 0,
   };
 
-  const submitForm = (e) => {
+  const [inputForm, setInputForm] = useState(initial);
+  const [inputErr, setInputErr] = useState({});
+  const [allReviews, setAllReviews] = useState([]);
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.stars) {
-      alert("Please fill all required fields!");
-      return;
+    if (handleErrors()) {
+      setAllReviews([...allReviews, inputForm]);
+      setInputForm(initial);
+      setInputErr({});
+      alert("Thank you for your feedback!");
     }
-    console.log("User Review:", formData);
-    setSubmitted(true);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setInputForm({ ...inputForm, [name]: value });
+  };
+
+  const handleRating = (num) => {
+    setInputForm({ ...inputForm, rating: num });
+  };
+
+  const handleErrors = () => {
+    let errors = {};
+    if (inputForm.uname === "") {
+      errors.unameErr = "Enter your username";
+    }
+    if (inputForm.email === "") {
+      errors.emailErr = "Enter your email address";
+    } else if (!emailregex.test(inputForm.email)) {
+      errors.emailErr = "Enter a valid email";
+    }
+    if (inputForm.rating === 0) {
+      errors.ratingErr = "Please rate this product";
+    }
+    if (inputForm.review === "") {
+      errors.reviewErr = "Please share your review";
+    }
+
+    setInputErr(errors);
+    return Object.keys(errors).length === 0;
   };
 
   return (
-    <div className="review-container">
-      <h2 className="review-title">Share Your Feedback</h2>
-
-      {submitted ? (
-        <div className="thankyou-box">
-          <h3>Thank You! 🎉</h3>
-          <p>We appreciate your feedback.</p>
-        </div>
-      ) : (
-        <form onSubmit={submitForm} className="review-form">
-          
-          <div className="field">
-            <label>Your Name *</label>
+    <div className="review-page">
+      <div className="review-container">
+        <h2 className="form-title"> Rate & Review</h2>
+        <form onSubmit={handleSubmit} className="review-form">
+          <div className="form-group">
+            <label>Username</label>
             <input
               type="text"
+              name="uname"
+              value={inputForm.uname}
+              onChange={handleChange}
               placeholder="Enter your name"
-              value={formData.name}
-              onChange={(e) => updateField("name", e.target.value)}
             />
+            {inputErr.unameErr && <span className="error">{inputErr.unameErr}</span>}
           </div>
 
-          {/* Email */}
-          <div className="field">
-            <label>Email *</label>
+          <div className="form-group">
+            <label>Email</label>
             <input
-              type="email"
+              type="text"
+              name="email"
+              value={inputForm.email}
+              onChange={handleChange}
               placeholder="Enter your email"
-              value={formData.email}
-              onChange={(e) => updateField("email", e.target.value)}
             />
+            {inputErr.emailErr && <span className="error">{inputErr.emailErr}</span>}
           </div>
 
-          {/* Star Rating */}
-          <div className="field rating-stars">
-            <label>Rating *</label>
-            <div>
-              {[...Array(5)].map((_, index) => {
-                const starValue = index + 1;
-                return (
-                  <span
-                    key={starValue}
-                    onClick={() => updateField("stars", starValue)}
-                    style={{
-                      cursor: "pointer",
-                      fontSize: "28px",
-                      color: starValue <= formData.stars ? "#ff9800" : "#ccc",
-                    }}
-                  >
-                    ★
-                  </span>
-                );
-              })}
+          <div className="form-group rating-group">
+            <label>Rating</label>
+            <div className="rating-stars">
+              {[1, 2, 3, 4, 5].map((num) => (
+                <span
+                  key={num}
+                  onClick={() => handleRating(num)}
+                  className={num <= inputForm.rating ? "star active" : "star"}
+                >
+                  &#9733;
+                </span>
+              ))}
             </div>
+            {inputErr.ratingErr && <span className="error">{inputErr.ratingErr}</span>}
           </div>
 
-          {/* Review */}
-          <div className="field">
-            <label>Your Review</label>
+          <div className="form-group">
+            <label>Write Review</label>
             <textarea
-              placeholder="Write something..."
-              value={formData.message}
-              onChange={(e) => updateField("message", e.target.value)}
-            ></textarea>
+              name="review"
+              value={inputForm.review}
+              onChange={handleChange}
+              placeholder="Share your experience..."
+              rows="4"
+            />
+            {inputErr.reviewErr && <span className="error">{inputErr.reviewErr}</span>}
           </div>
 
-          {/* Submit */}
           <button type="submit" className="submit-btn">
             Submit Review
           </button>
         </form>
-      )}
+      </div>
+
+      <div className="review-list">
+        <h3>Customer Reviews</h3>
+        {allReviews.length === 0 ? (
+          <p className="no-reviews">No reviews yet. Be the first!</p>
+        ) : (
+          allReviews.map((r, index) => (
+            <div key={index} className="review-card">
+              <div className="review-header">
+                <div>
+                  <h4>{r.uname}</h4>
+                  <p>{r.email}</p>
+                </div>
+                <div className="stars-display">
+                  {[1, 2, 3, 4, 5].map((num) => (
+                    <span key={num} className={num <= r.rating ? "star active" : "star"}>
+                      &#9733;
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <p className="review-text">“{r.review}”</p>
+            </div>
+          ))
+        )}
+      </div>
     </div>
   );
 };
