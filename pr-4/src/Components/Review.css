@@ -1,7 +1,6 @@
-/* Overall layout */
 .review-page {
   font-family: "Poppins", sans-serif;
-  background: linear-gradient(135deg, #eef2f3, #d9e4f5);
+  background: linear-gradient(135deg, rgb(50, 47, 47), gray);
   min-height: 100vh;
   padding: 40px 20px;
   display: flex;
@@ -9,7 +8,7 @@
   align-items: center;
 }
 
-/* Form container */
+
 .review-container {
   background: white;
   width: 420px;
@@ -30,7 +29,6 @@
   margin-bottom: 20px;
 }
 
-/* Inputs */
 .form-group {
   display: flex;
   flex-direction: column;
@@ -58,14 +56,12 @@
   border-color: #6a82fb;
 }
 
-/* Error text */
 .error {
   color: red;
   font-size: 13px;
   margin-top: 3px;
 }
 
-/* Rating stars */
 .rating-group {
   margin-bottom: 15px;
 }
@@ -87,7 +83,6 @@
   color: #f7c000;
 }
 
-/* Submit button */
 .submit-btn {
   width: 100%;
   background: linear-gradient(90deg, #6a82fb, #fc5c7d);
@@ -104,7 +99,6 @@
   opacity: 0.9;
 }
 
-/* Review list */
 .review-list {
   margin-top: 50px;
   width: 100%;
