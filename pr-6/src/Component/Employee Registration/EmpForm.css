@@ -1,0 +1,71 @@
+.empform-bg {
+  background: radial-gradient(circle at top left, #1b2735, #090a0f);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.empform-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.empform-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 255, 255, 0.15);
+}
+
+.header-icon {
+  font-size: 3rem;
+  color: #0dcaf0;
+  background: rgba(255, 255, 255, 0.1);
+  display: inline-block;
+  padding: 15px 20px;
+  border-radius: 50%;
+  backdrop-filter: blur(8px);
+}
+
+.modern-input,
+.modern-select,
+.modern-textarea {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: white;
+  border-radius: 12px;
+  padding: 10px 14px;
+  transition: all 0.3s ease;
+}
+
+.modern-input:focus,
+.modern-select:focus,
+.modern-textarea:focus {
+  border-color: #0dcaf0;
+  box-shadow: 0 0 10px rgba(13, 202, 240, 0.4);
+  outline: none;
+}
+
+.modern-submit-btn {
+  background: linear-gradient(90deg, #0dcaf0, #6610f2);
+  border: none;
+  border-radius: 50px;
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.modern-submit-btn:hover {
+  background: linear-gradient(90deg, #6610f2, #0dcaf0);
+  box-shadow: 0 0 20px rgba(13, 202, 240, 0.6);
+}
+
+.text-danger {
+  font-size: 0.8rem;
+}
+
+small.text-danger {
+  display: block;
+  margin-top: 4px;
+}

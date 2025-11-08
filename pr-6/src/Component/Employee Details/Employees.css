@@ -1,0 +1,35 @@
+.employee-page-bg {
+  background: linear-gradient(135deg, #1a1f2b, #283048);
+  min-height: 100vh;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  color: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
+}
+
+.employee-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.badge.bg-gradient {
+  background: linear-gradient(90deg, #17a2b8, #6610f2);
+  border: none;
+}
+
+.modern-modal .modal-content {
+  border-radius: 20px;
+  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.9);
+}
