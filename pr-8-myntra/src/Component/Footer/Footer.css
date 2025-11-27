@@ -85,19 +85,17 @@
   width: 50px;
   height: 50px;
   background: #f4f4f6;
-  /* border-radius: 50%; */
-  /* border: 1px solid #ddd; */
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;       /* VERY IMPORTANT */
-  padding: 5px;           /* smooth inner spacing */
+  overflow: hidden;       
+  padding: 5px;           
 }
 
 .icon-circle img {
   width: 100%;
   height: 100%;
-  object-fit: contain;     /* keeps icon perfect without stretching */
+  object-fit: contain;     
 }
 
 .footer-bottom {
@@ -166,39 +164,6 @@
 .office-info a {
   color: #3466cb;
   text-decoration: none;
-}
-
-/* ===================== RESPONSIVE ===================== */
-
-/* Tablets & Small Screens */
-@media (max-width: 768px) {
-  .copyright-row {
-    flex-direction: column;
-    text-align: center;
-    gap: 8px;
-  }
-
-  .office-info-right {
-    justify-content: flex-start;
-    text-align: left;
-    margin-top: 20px;
-  }
-}
-
-/* Phones */
-@media (max-width: 576px) {
-  .popular-items {
-    font-size: 12px;
-  }
-
-  .address,
-  .office-info {
-    font-size: 12px;
-  }
-
-  .footer-bottom {
-    padding: 25px 10px;
-  }
 }
 
 .shopping-info-section {
@@ -365,14 +330,7 @@
   color: #555;
 }
 
-
-
-
-
-
-/* ===============================
-   DEFAULT (Large Screens ≥ 1200px)
-================================= */
+/* ===================== RESPONSIVE ===================== */
 @media (min-width: 1200px) {
   .new-footer {
     padding: 60px 0;
@@ -388,9 +346,6 @@
   }
 }
 
-/* ===============================
-   LAPTOPS / MEDIUM SCREENS (992px)
-================================= */
 @media (max-width: 992px) {
   .footer-heading {
     font-size: 13px;
@@ -410,11 +365,7 @@
   }
 }
 
-/* ===============================
-   TABLETS (768px)
-================================= */
 @media (max-width: 768px) {
-  /* Make 4 columns stack into 2 rows */
   .new-footer .col-md-3 {
     margin-bottom: 25px;
   }
@@ -436,9 +387,6 @@
   }
 }
 
-/* ===============================
-   MOBILE PHONES (576px)
-================================= */
 @media (max-width: 576px) {
   .footer-title,
   .footer-heading {
@@ -483,9 +431,6 @@
   }
 }
 
-/* ===============================
-   SMALL MOBILE (450px)
-================================= */
 @media (max-width: 450px) {
   .popular-items {
     font-size: 11.5px;
@@ -507,31 +452,3 @@
     font-size: 13px;
   }
 }
-
-/* ===============================
-   EXTRA SMALL MOBILE (375px)
-================================= */
-@media (max-width: 375px) {
-  .footer-heading {
-    font-size: 12px;
-  }
-
-  .footer-menu li {
-    font-size: 11px;
-  }
-
-  .info-para,
-  .history-text {
-    font-size: 12.5px;
-  }
-
-  .address,
-  .office-info {
-    font-size: 11px;
-  }
-
-  .social-box svg {
-    font-size: 16px;
-  }
-}
-/* css */
