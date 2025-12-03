@@ -7,10 +7,6 @@ const initialvalue =
         isLoding: false
     }
 
-
-
-
-
 export const AddProductRedux = (state = initialvalue, action) => {
 
     switch (action.type) {
