@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Form, Button, Row, Col, Container, Card, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import {  addproductAsync } from "../Services/Action/AddProductAction";
 import generateUniqueId from "generate-unique-id";
 import { useNavigate } from "react-router-dom";
+import { addproductAsync } from "../Services/Action/addProductAction";
 
 const AddProduct = () => {
   const dispatch = useDispatch();
@@ -85,9 +85,9 @@ const AddProduct = () => {
 
   useEffect(()=>{
   if(isCreated){
-   if(inputform.category ==="man"){
+   if(inputform.category ==="men"){
     setinputform(initialState)
-    navigat('/men')
+    navigat('/man')
    }else if(inputform.category ==="women"){
      setinputform(initialState)
     navigat('/women')

@@ -1,5 +1,5 @@
-import axios from "axios"
-import { data } from "react-router-dom"
+import { collection, deleteDoc, doc, getDoc, getDocs, setDoc, updateDoc } from "firebase/firestore"
+import { db } from "../../../../firebase.config"
 
 
 export const addproduct = ()=>{
@@ -56,13 +56,14 @@ return{
 
 export const addproductAsync  = (data)=>{
     return async(dispatch)=>{
-        dispatch(Loding)
+        dispatch(Loding())
         try {
-             await axios.post(`http://localhost:3000/products`,data)
+            //  await axios.post(`http://localhost:3000/products`,data)
+            await setDoc(doc(db, "products", data.id), data);
         dispatch(addproduct())
         } catch (error) {
-            console.log(error.message)
-            console.log(error)
+            // console.log(error.message)
+            // console.log(error)
             dispatch(errormsg(error.message))
         }
        
@@ -72,10 +73,17 @@ export const addproductAsync  = (data)=>{
 
 export const getallproductAync = ()=>{
     return async(dispatch)=>{
-        dispatch(Loding)
+        dispatch(Loding())
          try {
-            let res = await axios.get('http://localhost:3000/products')
-            dispatch(getallproduct(res.data))
+            // let res = await axios.get('http://localhost:3000/products')
+            let records = []
+            const res = await getDocs(collection(db, "products"));
+            res.forEach(rec => {
+                records.push({
+                    ...rec.data(), id: rec.id
+                })
+            });
+            dispatch(getallproduct(records))
         } catch (error) {
             console.log(error)
         }
@@ -86,7 +94,8 @@ export const getallproductAync = ()=>{
 export const deleteproductAsync = (id)=>{
     return async(dispatch)=>{
      try{
-         let res  = await axios.delete(`http://localhost:3000/products/${id}`)
+        //  let res  = await axios.delete(`http://localhost:3000/products/${id}`)
+        await deleteDoc(doc(db, "products", id));
          dispatch(getallproductAync())
      }catch(error){
    dispatch(errormsg(error.message))
@@ -99,8 +108,10 @@ export const editproductAsync = (id)=>{
    return async (dispatch)=>{
      dispatch(Loding())
      try {
-        let res = await axios.get(`http://localhost:3000/products/${id}`)
-        dispatch(Editproduct(res.data))
+        // let res = await axios.get(`http://localhost:3000/products/${id}`)
+        let res =await getDoc(doc(db, "products",id));
+        console.log(res.data());
+        dispatch(Editproduct(res.data()))
 
      } catch (error) {
        dispatch(errormsg(error.message)) 
@@ -111,7 +122,13 @@ export const editproductAsync = (id)=>{
 
 export const updateProductAsync = (data)=>{
     return async (dispatch)=>{
-        let res = await axios.put(`http://localhost:3000/products/${data.id}`,data)
-        dispatch(updateProduct())
+        try{
+            // let res = await axios.put(`http://localhost:3000/products/${data.id}`,data)
+            await updateDoc(doc(db, "products", data.id), data);
+
+            dispatch(updateProduct())
+        }catch(error){
+            dispatch(errormsg(error.message))
+        }
     }
 }

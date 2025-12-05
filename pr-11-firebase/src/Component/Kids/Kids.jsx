@@ -11,13 +11,13 @@ import {
 } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { AiFillStar } from "react-icons/ai";
-import {  getallproductAync } from "../Services/Action/AddProductAction";
 import Filters from "../Filters/Filters";
 import { useNavigate } from "react-router-dom";
 import { BsSliders } from "react-icons/bs";
 import { BiSort } from "react-icons/bi";
 import { FiLayers } from "react-icons/fi";
 import { CiHeart } from "react-icons/ci";
+import { getallproductAync } from "../Services/Action/addProductAction";
 
 
 const Kids = () => {
